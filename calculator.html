@@ -32,7 +32,7 @@
       margin-right: 15px; 
       font-weight: normal; 
     }
-    button, .dynamic-btn {
+    button {
       margin-top: 15px; 
       padding: 10px 20px; 
       font-size: 1em; 
@@ -42,7 +42,7 @@
       border-radius: 4px; 
       cursor: pointer; 
     }
-    button:hover, .dynamic-btn:hover { 
+    button:hover { 
       background-color: #c41287; 
     }
     .result { 
@@ -50,6 +50,17 @@
       font-weight: bold; 
       font-size: 1.2em; 
       color: #e0189c; 
+    }
+    .quote-label {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e0189c;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.5em;
+      border-radius: 5px;
+      display: none; /* Initially hidden */
     }
     small { 
       display: block; 
@@ -98,6 +109,7 @@
   </form>
   
   <div class="result" id="result"></div>
+  <div class="quote-label" id="quoteLabel">You really need Dynamic Drive</div>
   
   <script>
     function calculateLostRevenue() {
@@ -117,17 +129,16 @@
       
       if (isNaN(numEmployees) || isNaN(avgSalary) || isNaN(moraleLoss) || isNaN(revenueMultiplier) || moraleLoss === 0) {
         document.getElementById("result").innerHTML = "Please fill in all fields and select a productivity loss percentage.";
+        document.getElementById("quoteLabel").style.display = "none";
         return;
       }
       
       // Calculation: Annual Lost Revenue = Number of Employees × Average Annual Salary × Revenue Multiplier × Productivity Loss
       var lostRevenue = numEmployees * avgSalary * revenueMultiplier * moraleLoss;
       
-      // Display result and the Dynamic Drive button
-      document.getElementById("result").innerHTML = 
-        "Estimated Lost Annual Revenue: R" + lostRevenue.toFixed(2) +
-        "<br><br>" +
-        "<button class='dynamic-btn' onclick=\"window.location.href='https://lucisdynamicdrive.com/contact-for-employee-improvement'\">You really need Dynamic Drive</button>";
+      // Display result and the quote label
+      document.getElementById("result").innerHTML = "Estimated Lost Annual Revenue: R" + lostRevenue.toFixed(2);
+      document.getElementById("quoteLabel").style.display = "block";
     }
   </script>
 </body>
