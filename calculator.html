@@ -26,11 +26,16 @@
       border-radius: 4px; 
     }
     .radio-group { 
+      display: flex;
+      gap: 15px;
+      align-items: center;
       margin: 10px 0; 
     }
-    .radio-group label { 
-      margin-right: 15px; 
+    .radio-group label {
+      display: flex;
+      align-items: center;
       font-weight: normal; 
+      gap: 5px;
     }
     button {
       margin-top: 15px; 
@@ -88,14 +93,9 @@
     <label>Select Estimated Productivity Loss due to Low Morale:</label>
     <small>Select the percentage loss in productivity (per annum) attributed to low employee morale.</small>
     <div class="radio-group">
-      <input type="radio" id="loss10" name="moraleLoss" value="0.1">
-      <label for="loss10">10%</label>
-      
-      <input type="radio" id="loss25" name="moraleLoss" value="0.25">
-      <label for="loss25">25%</label>
-      
-      <input type="radio" id="loss50" name="moraleLoss" value="0.5">
-      <label for="loss50">50%</label>
+      <label><input type="radio" id="loss10" name="moraleLoss" value="0.1"> 10%</label>
+      <label><input type="radio" id="loss25" name="moraleLoss" value="0.25"> 25%</label>
+      <label><input type="radio" id="loss50" name="moraleLoss" value="0.5"> 50%</label>
     </div>
     
     <label for="revenueMultiplier">Revenue Multiplier:</label>
