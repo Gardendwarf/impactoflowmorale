@@ -65,7 +65,26 @@
       font-weight: bold;
       font-size: 1.5em;
       border-radius: 5px;
-      display: none; /* Initially hidden */
+      display: none;
+    }
+    .dynamic-drive {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    .dynamic-drive-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .dynamic-drive div {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #e0189c;
+      border-radius: 5px;
     }
     small { 
       display: block; 
@@ -101,7 +120,6 @@
     <label for="revenueMultiplier">Revenue Multiplier:</label>
     <small>
       Enter the revenue multiplier. This represents the ratio of annual revenue generated per employee relative to their salary.
-      For example, a multiplier of 1 means a 1:1 ratio, while a multiplier of 2 means each employee generates twice their annual salary in revenue.
     </small>
     <input type="number" id="revenueMultiplier" name="revenueMultiplier" required step="0.1" value="1">
     
@@ -111,15 +129,34 @@
   <div class="result" id="result"></div>
   <div class="quote-label" id="quoteLabel">You really need Dynamic Drive</div>
   
+  <div class="dynamic-drive" id="dynamicDrive">
+    <div class="dynamic-drive-container">
+      <div>
+        <h3>Dynamic Drive Course</h3>
+        <p><strong>R1000 per employee.</strong></p>
+        <p>This 1-week course is the perfect groundwork foundation your employees need for you to build on further.</p>
+        <p>Course is done at the workplace in groups with 1-hour 30-minute sessions.</p>
+      </div>
+      <div>
+        <h3>Monthly Dynamic Drive Program</h3>
+        <p><strong>R500 per employee per month</strong></p>
+        <p>No contract – cancel at any time.</p>
+        <p>Program is done via WhatsApp group communication and includes a sales expert and a personal finance expert.</p>
+      </div>
+    </div>
+    <hr>
+    <p>This program allows you to invest in your employees even further and ensures they learn new skills that can become valuable for your company.</p>
+    <p>In-person visits will also be done throughout the month if necessary.</p>
+  </div>
+  
   <script>
     function calculateLostRevenue() {
       var numEmployees = parseFloat(document.getElementById("numEmployees").value);
       var avgSalary = parseFloat(document.getElementById("avgSalary").value);
       var revenueMultiplier = parseFloat(document.getElementById("revenueMultiplier").value);
-      
-      // Get the selected productivity loss value from the radio buttons
       var moraleLossElements = document.getElementsByName("moraleLoss");
       var moraleLoss = 0;
+      
       for (var i = 0; i < moraleLossElements.length; i++) {
         if (moraleLossElements[i].checked) {
           moraleLoss = parseFloat(moraleLossElements[i].value);
@@ -133,12 +170,10 @@
         return;
       }
       
-      // Calculation: Annual Lost Revenue = Number of Employees × Average Annual Salary × Revenue Multiplier × Productivity Loss
       var lostRevenue = numEmployees * avgSalary * revenueMultiplier * moraleLoss;
-      
-      // Display result and the quote label
-      document.getElementById("result").innerHTML = "Estimated Lost Annual Revenue: R" + lostRevenue.toFixed(2);
+      document.getElementById("result").innerHTML = "Estimated Lost Annual Revenue: " + lostRevenue.toLocaleString('en-ZA', {style: 'currency', currency: 'ZAR'});
       document.getElementById("quoteLabel").style.display = "block";
+      document.getElementById("dynamicDrive").style.display = "block";
     }
   </script>
 </body>
